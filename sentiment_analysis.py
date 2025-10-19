@@ -3,9 +3,15 @@
 from textblob import TextBlob
 
 def analyze_sentiment(headlines):
+    from textblob import TextBlob
     results = []
     for headline in headlines:
-        blob = TextBlob(headline)
-        sentiment_score = round(blob.sentiment.polarity, 2)  # between -1 and 1
-        results.append((headline, sentiment_score))
+        score = TextBlob(headline).sentiment.polarity
+        if score > 0.05:
+            label = "Positive"
+        elif score < -0.05:
+            label = "Negative"
+        else:
+            label = "Neutral"
+        results.append((headline, score, label))
     return results

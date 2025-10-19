@@ -1,0 +1,80 @@
+/* 🌗 Light Theme */
+body.light, body.light .stApp {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* 🌙 Dark Theme */
+body.dark, body.dark .stApp {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* Headings, text, and labels */
+body.dark h1, body.dark h2, body.dark h3, 
+body.dark h4, body.dark h5, body.dark h6,
+body.dark p, body.dark label, body.dark span,
+body.dark div[data-testid="stMetricValue"], 
+body.dark div[data-testid="stMetricLabel"] {
+    color: #ffffff !important;
+}
+
+body.light h1, body.light h2, body.light h3, 
+body.light h4, body.light h5, body.light h6,
+body.light p, body.light label, body.light span,
+body.light div[data-testid="stMetricValue"], 
+body.light div[data-testid="stMetricLabel"] {
+    color: #000000 !important;
+}
+
+/* 🔘 Input boxes, select boxes, sliders */
+body.dark .stSelectbox div[data-baseweb="select"],
+body.dark .stTextInput input,
+body.dark .stNumberInput input,
+body.dark textarea,
+body.dark .stSlider,
+body.dark .stMultiSelect div[data-baseweb="select"] {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+    border-radius: 8px;
+}
+
+body.light .stSelectbox div[data-baseweb="select"],
+body.light .stTextInput input,
+body.light .stNumberInput input,
+body.light textarea,
+body.light .stSlider,
+body.light .stMultiSelect div[data-baseweb="select"] {
+    background-color: #f9f9f9 !important;
+    color: #000000 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px;
+}
+
+/* Buttons */
+button {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+body.dark button {
+    background-color: #272727 !important;
+    color: white !important;
+}
+
+body.light button {
+    background-color: #f0f0f0 !important;
+    color: black !important;
+}
+
+/* Dropdown arrows and icons fix */
+body.dark svg {
+    fill: white !important;
+}
+
+body.light svg {
+    fill: black !important;
+}
