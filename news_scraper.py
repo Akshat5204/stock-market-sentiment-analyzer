@@ -1,42 +1,17 @@
 # news_scraper.py
+
 import requests
-import os
-import pandas as pd
-import streamlit as st
+from bs4 import BeautifulSoup
 
-NEWS_API_KEY = os.getenv("NEWS_API_KEY", "0118536454884f5ea55f4af084aaf44c")  # Replace or use .env
+def get_news(query, max_headlines=5):
+    url = f"https://www.bing.com/news/search?q={query}+stock&FORM=HDRSC6"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
 
-@st.cache_data(ttl=300)  # cache 5 min
-def get_news(ticker):
-    """
-    Fetch latest English news headlines related to a stock symbol using NewsAPI.
-    Returns: list of dicts [{title, description, url, source, publishedAt}, ...]
-    """
-    try:
-        url = f"https://newsapi.org/v2/everything"
-        params = {
-            "q": ticker,
-            "language": "en",
-            "sortBy": "publishedAt",
-            "pageSize": 10,
-            "apiKey": NEWS_API_KEY
-        }
-        r = requests.get(url, params=params, timeout=10)
-        data = r.json()
-        if data.get("status") != "ok":
-            st.warning("⚠️ Could not fetch news.")
-            return []
-        articles = data.get("articles", [])
-        return [
-            {
-                "title": a["title"],
-                "description": a["description"],
-                "url": a["url"],
-                "source": a["source"]["name"],
-                "publishedAt": a["publishedAt"][:10]
-            }
-            for a in articles if a["title"]
-        ]
-    except Exception as e:
-        st.error(f"Error fetching news: {e}")
-        return []
+    headlines = []
+    for item in soup.find_all("a", {"class": "title"}, limit=max_headlines):
+        title = item.get_text()
+        if title:
+            headlines.append(title.strip())
+
+    return headlines
