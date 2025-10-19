@@ -133,7 +133,8 @@ try:
             st.warning("No valid headlines found to analyze.")
         else:
             # Analyze sentiment
-            sentiment_results = analyze_sentiment(headlines)
+            sentiment_results = analyze_sentiment(articles)
+
             df_sentiment = pd.DataFrame(sentiment_results, columns=["Headline", "Sentiment Score", "Sentiment Label"])
 
             st.dataframe(df_sentiment)
