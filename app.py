@@ -115,6 +115,7 @@ st.subheader("📰 News Sentiment Analysis")
 
 try:
     articles = get_news(ticker)
+    print("articles: ", articles)
 
     if not articles:
         st.warning("No recent news found.")
